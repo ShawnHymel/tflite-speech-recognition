@@ -33,14 +33,11 @@ Open **03-tflite-model-converter** and make sure that `keras_model_filename` poi
 
 Copy the newly created **wake_word_stop_lite.tflite** and **04-rpi-tflite-audio-stream.py** files to the same directory somewhere on your Raspberry Pi. Run the **04-rpi-tflite-audio-stream.py** script. You should see numbers scrolling in the terminal that correspond to the output of the CNN; these are confidence levels that the last 1 second of captured audio contained the word "stop." If you say "stop," the program should print out the word. If you have an LED connected to pin 8, you should see it also flash briefly.
 
-![Output of Raspberry Pi running TensorFlow Lite to classify wake word](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Output of Raspberry Pi running TensorFlow Lite to classify wake word](https://raw.githubusercontent.com/ShawnHymel/tflite-speech-recognition/master/Images/tflite-pi-wake-word-output.png)
 
 License
 -------
-The hardware is released under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
-The workshop slides and worksheet are released under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-
-Demo code in the Firmware directory is [Beerware](https://en.wikipedia.org/wiki/Beerware).
+All code in this repository is for demonstration purposes and licensed under [Beerware](https://en.wikipedia.org/wiki/Beerware).
 
 Distributed as-is; no warranty is given.
