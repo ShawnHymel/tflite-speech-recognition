@@ -1,7 +1,7 @@
 TensorFlow Lite Speech Recognition Demo
 ========
 
-This project is a demonstration on how to use TensorFlow and Keras to train a Convolutional Neural Network (CNN) to recognize the wake word "stop" among other words. In addition, it contains another Python example that uses TensorFlow Lite to run inference on the trained model to recognize the spoken word "stop" on a Raspberry Pi (or other Linux-based computer).
+This project is a demonstration on how to use TensorFlow and Keras to train a Convolutional Neural Network (CNN) to recognize the wake word "stop" among other words. In addition, it contains another Python example that uses TensorFlow Lite to run inference on the trained model to recognize the spoken word "stop" on a Raspberry Pi.
 
 The full articles that explain how these programs work and how to use them can be found here:
 %%%TODO: Links%%%
@@ -18,14 +18,14 @@ Alternatively, you can use [Google Colab](https://colab.research.google.com/) to
 
 Finally, you will need the TensorFlow Lite inference engine installed on your Raspberry Pi (or target deployment device). Instructions to do that can be found here: [https://www.tensorflow.org/lite/guide/python](https://www.tensorflow.org/lite/guide/python).
 
-For hardware, you will need a microphone for your Raspberry Pi to capture audio. This [USB microphone from Adafruit](https://www.adafruit.com/product/3367) worked well for me. If you'd like to see an LED flash whenever you say the word "stop," you can connect an LED to the Raspberry Pi as shown in [this tutorial](https://raspberrypihq.com/making-a-led-blink-using-the-raspberry-pi-and-python/). Follow [these instructions](https://learn.adafruit.com/usb-audio-cards-with-a-raspberry-pi/instructions) to make sure you can record audio on your Raspberry Pi.
+For hardware, you will need a microphone for your Raspberry Pi to capture audio. This [USB microphone from Adafruit](https://www.adafruit.com/product/3367) worked well for me. Follow [these instructions](https://learn.adafruit.com/usb-audio-cards-with-a-raspberry-pi/instructions) to make sure you can record audio on your Raspberry Pi. If you'd like to see an LED flash whenever you say the word "stop," you can connect an LED to the Raspberry Pi as shown in [this tutorial](https://raspberrypihq.com/making-a-led-blink-using-the-raspberry-pi-and-python/). 
 
 Getting Started
 ---------------
 
 First, download and unzip the [Google Speech Commands dataset](https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.02.tar.gz) on your computer. Since this example uses the Google Speech Commands dataset, I am required (and gratefully so) to give them credit for collecting and releasing this data for everyone to use. To learn more about it (and even contribute samples of your own voice!), please see [this page](https://github.com/tensorflow/docs/blob/master/site/en/r1/tutorials/sequences/audio_recognition.md).
 
-Open **01-speech-commands-mfcc-extraction** in Jupyter Notebook. Change the `dataset_path` variable to point to the location of the unzipped Google Speech Commands dataset directory on your computer. Run the entire script. The script will convert all speech samples (excluding the _background_noide_ set) to their [Mel Frequency Cepstral Coefficients](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/) (MFCCs), divide them into training, validation, and test sets, and save them as tensors in a file named `all_targets_mfcc_sets.npz`.
+Open **01-speech-commands-mfcc-extraction** in Jupyter Notebook. Change the `dataset_path` variable to point to the location of the unzipped Google Speech Commands dataset directory on your computer. Run the entire script. The script will convert all speech samples (excluding the _background_noise_ set) to their [Mel Frequency Cepstral Coefficients](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/) (MFCCs), divide them into training, validation, and test sets, and save them as tensors in a file named `all_targets_mfcc_sets.npz`.
 
 Next, open **02-speech-commands-mfcc-classifier** in Jupyter Notebook and change the `dataset_path` variable to point to the location of the unzipped Google Speech Commands dataset directory. Feel free to change the `wake_word` variable to any other wake word available in the Speech Commands dataset. Run the entire script. It will read the MFCCs from the file made in the first script, build a CNN (credit goes to [this GeeksforGeeks article](https://www.geeksforgeeks.org/python-image-classification-using-keras/) for the CNN structure), and train it using the training features we created (MFCCs). The script will then save the model in the `wake_word_stop_model.h5` file.
 
