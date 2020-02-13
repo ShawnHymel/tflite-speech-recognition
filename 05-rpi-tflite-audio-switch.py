@@ -1,6 +1,8 @@
 """
-Connect a resistor and LED to board pin 8 and run this script.
-Whenever you say "stop", the LED should flash briefly
+Connect a relay to board pin 8 and run this script. The relay should be on
+by default when the script is first run. When it hears the word "stop,"
+the program will switch the realy to off. You will need to run the script
+again to turn it back on.
 """
 
 import sounddevice as sd
@@ -13,7 +15,7 @@ import RPi.GPIO as GPIO
 from tflite_runtime.interpreter import Interpreter
 
 # Parameters
-debug_time = 1
+debug_time = 0
 debug_acc = 0
 led_pin = 8
 word_threshold = 0.5
@@ -24,6 +26,7 @@ resample_rate = 8000
 num_channels = 1
 num_mfcc = 16
 model_path = 'wake_word_stop_lite.tflite'
+word_flag = 0
 
 # Sliding window
 window = np.zeros(int(rec_duration * resample_rate) * 2)
@@ -31,7 +34,7 @@ window = np.zeros(int(rec_duration * resample_rate) * 2)
 # GPIO 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.HIGH)
 
 # Load model (interpreter)
 interpreter = Interpreter(model_path)
@@ -62,7 +65,7 @@ def decimate(signal, old_fs, new_fs):
 # This gets called every 0.5 seconds
 def sd_callback(rec, frames, time, status):
 
-    GPIO.output(led_pin, GPIO.LOW)
+    global word_flag
 
     # Start timing for testing
     start = timeit.default_timer()
@@ -102,8 +105,9 @@ def sd_callback(rec, frames, time, status):
     output_data = interpreter.get_tensor(output_details[0]['index'])
     val = output_data[0][0]
     if val > word_threshold:
-        print('stop')
-        GPIO.output(led_pin, GPIO.HIGH)
+        print("Emergency shut down detected!")
+        GPIO.output(led_pin, GPIO.LOW)
+        word_flag = 1
 
     if debug_acc:
         print(val)
@@ -116,5 +120,6 @@ with sd.InputStream(channels=num_channels,
                     samplerate=sample_rate,
                     blocksize=int(sample_rate * rec_duration),
                     callback=sd_callback):
-    while True:
+    while word_flag == 0:
         pass
+    print("Done!")
