@@ -4,15 +4,21 @@ TensorFlow Lite Speech Recognition Demo
 This project is a demonstration on how to use TensorFlow and Keras to train a Convolutional Neural Network (CNN) to recognize the wake word "stop" among other words. In addition, it contains another Python example that uses TensorFlow Lite to run inference on the trained model to recognize the spoken word "stop" on a Raspberry Pi.
 
 The full articles that explain how these programs work and how to use them can be found here:
-%%%TODO: Links%%%
+[TensorFlow Lite Tutorial Part 1: Wake Word Feature Extraction](https://www.digikey.com/en/maker/projects/tensorflow-lite-tutorial-part-1-wake-word-feature-extraction/54e1ce8520154081a58feb301ef9d87a)
+[TensorFlow Lite Tutorial Part 2: Speech Recognition Model Training](https://www.digikey.com/en/maker/projects/tensorflow-lite-tutorial-part-2-speech-recognition-model-training/d8d04a2b60a442cf8c3fa5c0dd2a292b)
+[TensorFlow Lite Tutorial Part 3: Speech Recognition on Raspberry Pi](https://www.digikey.com/en/maker/projects/tensorflow-lite-tutorial-part-3-speech-recognition-on-raspberry-pi/8a2dc7d8a9a947b4a953d37d3b271c71)
 
 Here are the accompanying videos that explain how to use TensorFlow to train and deploy a speech recognition model:
-%%%TODO: Links%%%
+[Intro to TensorFlow Lite Part 1: Wake Word Feature Extraction](https://www.youtube.com/watch?v=0fn7pj7Dutc)
+[Intro to TensorFlow Lite Part 2: Speech Recognition Model Training](https://www.youtube.com/watch?v=yv_WVwr6OkI)
+[Intro to TensorFlow Lite Part 3: Speech Recognition on Raspberry Pi](https://www.youtube.com/watch?v=8-vl9bNY9aI)
+
+![Raspberry Pi with LED and TensorFlow logo](https://raw.githubusercontent.com/ShawnHymel/tflite-speech-recognition/master/Images/tflite-rpi-cover.jpg)
 
 Prerequisites
 --------------
 
-You will need to install TensorFlow, Keras, and Jupyter Notebook on your desktop or laptop. This guide (%%%TODO: Link%%%) will walk you through that process. 
+You will need to install TensorFlow, Keras, and Jupyter Notebook on your desktop or laptop. (This guide)[https://www.digikey.com/en/maker/projects/getting-started-with-machine-learning-using-tensorflow-and-keras/0746640deea84313998f5f95c8206e5b] will walk you through that process. 
 
 Alternatively, you can use [Google Colab](https://colab.research.google.com/) to run a Jupyter Notebook instance in the cloud, however, loading files (e.g. training samples) will require you to upload them to Google Drive and write different code to import them into your program. [This guide](https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92) offers some tips on how to do that.
 
